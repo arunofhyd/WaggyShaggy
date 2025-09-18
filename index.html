@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaggyShaggy - Coming Soon</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000; 
+            overflow: hidden; /* Prevent all scrollbars */
+        }
+
+        /* --- Scrolling Text (Marquee) Styles --- */
+        .scrolling-text-container { width: 100vw; overflow: hidden; }
+        .scroll-text {
+            font-size: clamp(3rem, 10vw, 6rem); 
+            font-weight: 800;
+            letter-spacing: -0.07em;
+            line-height: 1.1;
+            text-transform: uppercase;
+            white-space: nowrap;
+            display: flex;
+        }
+        .scroll-text span { padding: 0 2rem; }
+
+        /* --- Keyframe animations for horizontal scroll --- */
+        @keyframes scrollLeft { from { transform: translateX(0%); } to { transform: translateX(-100%); } }
+        @keyframes scrollRight { from { transform: translateX(-100%); } to { transform: translateX(0%); } }
+
+        /* Animation Utility Classes */
+        .scroll-left { animation: scrollLeft 40s linear infinite; }
+        .scroll-right { animation: scrollRight 40s linear infinite; }
+
+        /* --- Background Video Layer --- */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* THIS IS THE KEY PROPERTY: It forces the video to cover the screen */
+            object-fit: cover; 
+            z-index: 1;
+            filter: brightness(0.7); 
+        }
+
+        #portrait-video {
+            display: none;
+        }
+
+        @media (orientation: portrait) {
+            #landscape-video {
+                display: none;
+            }
+            #portrait-video {
+                display: block;
+            }
+        }
+
+        /* --- Footer Styles --- */
+        .footer-link {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <video autoplay loop muted playsinline id="landscape-video" class="background-video">
+        <source src="assets/landscape.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video autoplay loop muted playsinline id="portrait-video" class="background-video">
+        <source src="assets/portrait.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="min-h-screen flex flex-col items-center justify-center relative z-10">
+        <div class="flex flex-col items-center">
+            <div class="relative mb-4">
+                <div class="scrolling-text-container">
+                    <div class="scroll-text scroll-left">
+                        <span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span>
+                    </div>
+                </div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.6; transform: translateY(-100%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.4; transform: translateY(-200%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.3; transform: translateY(-300%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.2; transform: translateY(-400%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.15; transform: translateY(-500%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.1; transform: translateY(-600%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.07; transform: translateY(-700%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.05; transform: translateY(-800%);"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+            </div>
+
+            <div class="relative">
+                <div class="scrolling-text-container">
+                    <div class="scroll-text scroll-right">
+                        <span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span>
+                    </div>
+                </div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.6; transform: translateY(100%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.4; transform: translateY(200%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.3; transform: translateY(300%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.2; transform: translateY(400%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.15; transform: translateY(500%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.1; transform: translateY(600%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.07; transform: translateY(700%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.05; transform: translateY(800%);"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span></div></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 w-full p-4 flex justify-center items-center z-20">
+        <a href="mailto:sheetalraj630@gmail.com" class="footer-link text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+            <i class="fas fa-envelope"></i>
+            <span>Reach out to the Owner</span>
+        </a>
+    </footer>
+
+</body>
+</html>
