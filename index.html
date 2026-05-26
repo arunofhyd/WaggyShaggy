@@ -3,129 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WaggyShaggy - Coming Soon</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>Waggy Shaggy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#8bb9e6',
+                            purple: '#c0a7e1',
+                            green: '#aed19e',
+                            orange: '#f3b456',
+                            pink: '#f5a6a6',
+                            lightbg: '#fdfbf6',
+                            darkbg: '#8bb9e6', // matching blue for footer
+                            text: '#2d3748',
+                            lighttext: '#718096'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #000000; 
-            overflow: hidden; /* Prevent all scrollbars */
+        body { background-color: #fdfbf6; }
+        .hero-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23e4f0fa" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,202.7C384,192,480,160,576,165.3C672,171,768,213,864,224C960,235,1056,213,1152,186.7C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top center;
         }
-
-        /* --- Scrolling Text (Marquee) Styles --- */
-        .scrolling-text-container { width: 100vw; overflow: hidden; }
-        .scroll-text {
-            font-size: clamp(3rem, 10vw, 6rem); 
-            font-weight: 800;
-            letter-spacing: -0.07em;
-            line-height: 1.1;
-            text-transform: uppercase;
-            white-space: nowrap;
-            display: flex;
-        }
-        .scroll-text span { padding: 0 2rem; }
-
-        /* --- Keyframe animations for horizontal scroll --- */
-        @keyframes scrollLeft { from { transform: translateX(0%); } to { transform: translateX(-100%); } }
-        @keyframes scrollRight { from { transform: translateX(-100%); } to { transform: translateX(0%); } }
-
-        /* Animation Utility Classes */
-        .scroll-left { animation: scrollLeft 40s linear infinite; }
-        .scroll-right { animation: scrollRight 40s linear infinite; }
-
-        /* --- Background Video Layer --- */
-        .background-video {
-            position: fixed;
+        .wavy-shape {
+            position: absolute;
             top: 0;
-            left: 0;
+            right: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; 
-            z-index: 1;
-            filter: brightness(0.7); 
+            background-color: #e4f0fa;
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+            z-index: -1;
         }
-
-        #portrait-video {
-            display: none;
-        }
-
-        @media (orientation: portrait) {
-            #landscape-video {
-                display: none;
-            }
-            #portrait-video {
-                display: block;
-            }
-        }
-
-        /* --- Footer Styles --- */
-        .footer-link {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        .bottom-wave {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%238bb9e6" fill-opacity="1" d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,170.7C672,149,768,107,864,101.3C960,96,1056,128,1152,138.7C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: bottom;
+            min-height: 200px;
         }
     </style>
 </head>
-<body class="text-white">
+<body class="text-brand-text font-sans antialiased overflow-x-hidden">
 
-    <video autoplay loop muted playsinline id="landscape-video" class="background-video">
-        <source src="assets/landscape.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <video autoplay loop muted playsinline id="portrait-video" class="background-video">
-        <source src="assets/portrait.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <!-- Top Banner -->
+    <div class="bg-brand-blue text-white text-xs font-semibold py-2 text-center flex justify-center items-center gap-2">
+        <span>❤️ Made for wagging tails, loved by fur parents.</span>
+        <span class="ml-4 flex items-center gap-2">Follow us
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+        </span>
+    </div>
 
-    <div class="min-h-screen flex flex-col items-center justify-center relative z-10">
-        <div class="flex flex-col items-center">
-            <div class="relative mb-4">
-                <div class="scrolling-text-container" style="animation-delay: -2s;">
-                    <div class="scroll-text scroll-left">
-                        <span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span>
-                    </div>
-                </div>
-                
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.6; transform: translateY(-100%); animation-delay: -5s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.4; transform: translateY(-200%); animation-delay: -10s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.3; transform: translateY(-300%); animation-delay: -15s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.2; transform: translateY(-400%); animation-delay: -8s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.15; transform: translateY(-500%); animation-delay: -18s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.1; transform: translateY(-600%); animation-delay: -12s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.07; transform: translateY(-700%); animation-delay: -22s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.05; transform: translateY(-800%); animation-delay: -30s;"><div class="scroll-text scroll-left"><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span><span>WaggyShaggy</span></div></div>
+    <!-- Navigation -->
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative z-10">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex-shrink-0 relative">
+                <img src="assets/logo.jpg" alt="Waggy Shaggy" class="h-24 object-contain">
             </div>
 
-            <div class="relative">
-                <div class="scrolling-text-container" style="animation-delay: -1s;">
-                    <div class="scroll-text scroll-right">
-                        <span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span>
-                    </div>
+            <!-- Nav Links -->
+            <div class="hidden md:flex space-x-8 text-xs font-bold tracking-wider text-gray-700 uppercase">
+                <a href="#" class="border-b-2 border-brand-blue pb-1">Home</a>
+                <a href="#" class="hover:text-brand-blue">Shop</a>
+                <a href="#" class="hover:text-brand-blue">About Us</a>
+                <a href="#" class="hover:text-brand-blue">Custom Cakes</a>
+                <a href="#" class="hover:text-brand-blue">Blog</a>
+                <a href="#" class="hover:text-brand-blue">Contact</a>
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-4 text-gray-600">
+                <svg class="w-5 h-5 cursor-pointer hover:text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <svg class="w-5 h-5 cursor-pointer hover:text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <div class="relative">
+                    <svg class="w-5 h-5 cursor-pointer hover:text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                 </div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.6; transform: translateY(100%); animation-delay: -4s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.4; transform: translateY(200%); animation-delay: -9s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.3; transform: translateY(300%); animation-delay: -14s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.2; transform: translateY(400%); animation-delay: -7s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.15; transform: translateY(500%); animation-delay: -17s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.1; transform: translateY(600%); animation-delay: -11s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.07; transform: translateY(700%); animation-delay: -21s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
-                <div class="scrolling-text-container absolute top-0 left-0" style="opacity: 0.05; transform: translateY(800%); animation-delay: -28s;"><div class="scroll-text scroll-right"><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span><span>Coming Soon</span></div></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative w-full overflow-hidden">
+        <div class="wavy-shape top-0 h-[600px] w-[80%] right-0 hidden md:block"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Left Text -->
+            <div>
+                <h1 class="text-4xl lg:text-5xl font-black text-brand-text leading-tight mb-6 tracking-tight">
+                    For every tail<br>
+                    that wags,<br>
+                    we create with love.
+                </h1>
+                <p class="text-sm lg:text-base text-gray-600 mb-8 max-w-sm leading-relaxed">
+                    From delicious treats to fun toys and adorable accessories &ndash; everything your furry friend deserves!
+                </p>
+                <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-sm font-bold rounded-full shadow-sm text-white bg-brand-blue hover:bg-blue-500 transition duration-300">
+                    SHOP NOW 🐾
+                </a>
+            </div>
+
+            <!-- Right Image -->
+            <div class="relative flex justify-center">
+                <!-- In a real site, we'd use the clean transparent PNG. For now we use the crop from the mockup. -->
+                <div class="relative rounded-3xl overflow-hidden bg-brand-blue/10 w-[400px] h-[400px] flex items-center justify-center">
+                    <img src="assets/hero_image.png" alt="Happy Birthday Dog" class="object-cover w-full h-full transform scale-110">
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="fixed bottom-0 left-0 w-full p-4 flex justify-center items-center z-20">
-        <a href="mailto:sheetalraj630@gmail.com" class="footer-link text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
-            <i class="fas fa-envelope"></i>
-            <span>Reach out to the Owner</span>
-        </a>
-    </footer>
+    <!-- Features Section -->
+    <div class="max-w-6xl mx-auto px-4 py-12 border-t border-b border-gray-100 my-12 bg-white rounded-[2rem] shadow-sm">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-100">
+            <div class="px-4">
+                <div class="mx-auto w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mb-4 text-brand-green">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3 class="text-sm font-bold text-gray-800 mb-2">Natural & Safe Ingredients</h3>
+                <p class="text-xs text-gray-500">Only the best for your furry baby</p>
+            </div>
+            <div class="px-4">
+                <div class="mx-auto w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center mb-4 text-brand-pink">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </div>
+                <h3 class="text-sm font-bold text-gray-800 mb-2">Made with Love</h3>
+                <p class="text-xs text-gray-500">Every product is crafted with lots of love</p>
+            </div>
+            <div class="px-4">
+                <div class="mx-auto w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4 text-brand-blue">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h3 class="text-sm font-bold text-gray-800 mb-2">Premium Quality</h3>
+                <p class="text-xs text-gray-500">High quality, because they deserve it</p>
+            </div>
+            <div class="px-4">
+                <div class="mx-auto w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mb-4 text-brand-purple">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                </div>
+                <h3 class="text-sm font-bold text-gray-800 mb-2">Pan India Delivery</h3>
+                <p class="text-xs text-gray-500">Delivering happiness to your doorstep</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collection Section -->
+    <div class="max-w-7xl mx-auto px-4 py-16 text-center">
+        <h2 class="text-3xl font-black text-brand-text mb-12 flex items-center justify-center gap-2">
+            Explore Our Collection <span class="text-brand-pink text-2xl">♥</span>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <!-- Collection Item 1 -->
+            <a href="#" class="group block">
+                <div class="bg-orange-50 rounded-2xl p-6 aspect-square flex items-center justify-center mb-4 group-hover:shadow-md transition">
+                    <img src="assets/coll_cakes.jpg" alt="Cakes & Treats" class="w-full h-full object-cover rounded-xl shadow-sm mix-blend-multiply">
+                </div>
+                <h4 class="text-xs font-bold text-gray-800 group-hover:text-brand-blue flex items-center justify-center gap-1">
+                    Cakes & Treats <span>→</span>
+                </h4>
+            </a>
+
+            <!-- Collection Item 2 -->
+            <a href="#" class="group block">
+                <div class="bg-gray-100 rounded-2xl p-6 aspect-square flex items-center justify-center mb-4 group-hover:shadow-md transition">
+                    <img src="assets/coll_toys.jpg" alt="Toys" class="w-full h-full object-cover rounded-xl shadow-sm mix-blend-multiply">
+                </div>
+                <h4 class="text-xs font-bold text-gray-800 group-hover:text-brand-blue flex items-center justify-center gap-1">
+                    Toys <span>→</span>
+                </h4>
+            </a>
+
+            <!-- Collection Item 3 -->
+            <a href="#" class="group block">
+                <div class="bg-pink-50 rounded-2xl p-6 aspect-square flex items-center justify-center mb-4 group-hover:shadow-md transition">
+                    <img src="assets/coll_apparel.jpg" alt="Apparel & Accessories" class="w-full h-full object-cover rounded-xl shadow-sm mix-blend-multiply">
+                </div>
+                <h4 class="text-xs font-bold text-gray-800 group-hover:text-brand-blue flex items-center justify-center gap-1">
+                    Apparel & Accessories <span>→</span>
+                </h4>
+            </a>
+
+            <!-- Collection Item 4 -->
+            <a href="#" class="group block">
+                <div class="bg-blue-50 rounded-2xl p-6 aspect-square flex items-center justify-center mb-4 group-hover:shadow-md transition">
+                    <img src="assets/coll_essentials.jpg" alt="Essentials" class="w-full h-full object-cover rounded-xl shadow-sm mix-blend-multiply">
+                </div>
+                <h4 class="text-xs font-bold text-gray-800 group-hover:text-brand-blue flex items-center justify-center gap-1">
+                    Essentials <span>→</span>
+                </h4>
+            </a>
+
+            <!-- Collection Item 5 -->
+            <a href="#" class="group block">
+                <div class="bg-orange-100 rounded-2xl p-6 aspect-square flex items-center justify-center mb-4 group-hover:shadow-md transition">
+                    <img src="assets/coll_hampers.jpg" alt="Gift Hampers" class="w-full h-full object-cover rounded-xl shadow-sm mix-blend-multiply">
+                </div>
+                <h4 class="text-xs font-bold text-gray-800 group-hover:text-brand-blue flex items-center justify-center gap-1">
+                    Gift Hampers <span>→</span>
+                </h4>
+            </a>
+        </div>
+    </div>
+
+    <!-- Newsletter / Footer Bottom Wave -->
+    <div class="bottom-wave mt-12 flex items-end">
+        <div class="max-w-5xl mx-auto w-full px-4 pb-12 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center gap-4 text-white mb-6 md:mb-0">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center overflow-hidden p-2">
+                     <img src="assets/logo.jpg" class="object-cover scale-150 transform translate-y-2">
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold">Join the Waggy Family!</h3>
+                    <p class="text-sm opacity-90">Get updates on new products, offers and lots of paw-sitive vibes.</p>
+                </div>
+            </div>
+            <div class="flex bg-white rounded-full p-1 shadow-md w-full md:w-auto">
+                <input type="email" placeholder="Enter your email" class="px-6 py-2 outline-none rounded-l-full text-sm w-full md:w-64 text-gray-700">
+                <button class="bg-brand-orange text-white text-xs font-bold px-6 py-3 rounded-full hover:bg-orange-500 transition shadow-sm">
+                    SUBSCRIBE 🐾
+                </button>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
